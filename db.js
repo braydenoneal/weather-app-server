@@ -1,12 +1,11 @@
-// db.js
-
 const mysql = require('mysql');
+const config = require('./configuration/config.json');
 
 const connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'weather-dev',
-    password: 'weatherdev',
-    database: 'weather'
+    host: config.host,
+    user: config.user,
+    password: config.password,
+    database: config.database
 });
 
 module.exports = connection;
