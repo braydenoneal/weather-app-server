@@ -22,7 +22,7 @@ router.post('/', body_parser.urlencoded({ extended: false }), (req, res) => {
             const user = rows.find((row) => row.email === req.body.email);
             if (user) {
                 if (user.token === req.body.token) {
-                    res.status(400).json('Authenticate successful');
+                    res.status(200).json('Authenticate successful');
                 } else {
                     res.status(500).json('Invalid token');
                 }
