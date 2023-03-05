@@ -21,19 +21,13 @@ router.post('/', body_parser.urlencoded({ extended: false }), (req, res) => {
         } else {
             const user = rows.find((row) => row.email === req.body.email);
             if (user) {
-                let hash = user.password_hash;
-                let password = req.body.password;
-                bcrypt.compare(password, hash).then((result) => {
-                    if (result) {
-                        const token = jwt.sign({email: req.body.email}, config.token_key);
-                        connection.query(`UPDATE weather.users SET token = '${token}' WHERE email = '${req.body.email}'`, () => {});
-                        res.status(400).json('Login successful');
-                    } else {
-                        res.status(500).json('Incorrect email or password');
-                    }
-                });
+                if (user.token === req.body.token) {
+                    res.status(400).json('Authenticate successful');
+                } else {
+                    res.status(500).json('Invalid token');
+                }
             } else {
-                res.status(500).json('Incorrect email or password');
+                res.status(500).json('User does not exist');
             }
         }
     });

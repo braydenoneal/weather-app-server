@@ -11,9 +11,11 @@ app.use(body_parser.json());
 const router = express.Router();
 router.use(express.json());
 
-const api = require('./api/login');
+const api_login = require('./api/login');
+const api_authenticate = require('./api/authenticate');
 
-router.use('/api/login', api);
+router.use('/api/login', api_login);
+router.use('/api/authenticate', api_authenticate);
 app.use(router);
 
 app.listen(port, hostname, () => {

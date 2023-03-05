@@ -2,5 +2,6 @@
   "host": "127.0.0.1",
   "user": "weather_dev",
   "password": "weather_dev",
-  "database": "weather"
+  "database": "weather",
+  "token_key": "token_key"
 }
