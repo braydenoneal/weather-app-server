@@ -1,3 +1,6 @@
+/*
+Connects the api to the mysql server on the host machine.
+ */
 const mysql = require('mysql');
 const config = require('./configuration/config.json');
 
